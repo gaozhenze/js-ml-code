@@ -1,3 +1,4 @@
+import * as tf from '@tensorflow/tfjs';
 import * as tfvis from '@tensorflow/tfjs-vis';
 
 window.onload = () => {
@@ -9,4 +10,7 @@ window.onload = () => {
         { values: xs.map((x, i) => ({ x, y: ys[i] })) },
         { xAxisDomain: [0, 5], yAxisDomain: [0, 8] }
     );
+
+    const model = tf.sequential();
+    model.add(tf.layers.dense({ units: 1, inputShape: [1] }));
 };
