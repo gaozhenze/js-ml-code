@@ -5,7 +5,8 @@
   "main": "index.js",
   "dependencies": {
     "@tensorflow/tfjs": "^1.2.9",
-    "@tensorflow/tfjs-node": "^1.2.9"
+    "@tensorflow/tfjs-node": "^1.2.9",
+    "@tensorflow/tfjs-vis": "^1.2.0"
   },
   "devDependencies": {},
   "scripts": {
