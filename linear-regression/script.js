@@ -13,5 +13,5 @@ window.onload = () => {
 
     const model = tf.sequential();
     model.add(tf.layers.dense({ units: 1, inputShape: [1] }));
-    model.compile({ loss: tf.losses.meanSquaredError });
+    model.compile({ loss: tf.losses.meanSquaredError, optimizer: tf.train.sgd(0.1) });
 };
