@@ -25,4 +25,7 @@ window.onload = async () => {
             ['loss']
         )
     });
+
+    const output = model.predict(tf.tensor([5]));
+    alert(`如果 x 为 5，那么预测 y 为 ${output.dataSync()[0]}`);
 };
