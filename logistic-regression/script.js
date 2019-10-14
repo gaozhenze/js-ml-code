@@ -37,4 +37,9 @@ window.onload = async () => {
             ['loss']
         )
     });
+
+    window.predict = (form) => {
+        const pred = model.predict(tf.tensor([[form.x.value * 1, form.y.value * 1]]));
+        alert(`预测结果：${pred.dataSync()[0]}`);
+    };
 };
