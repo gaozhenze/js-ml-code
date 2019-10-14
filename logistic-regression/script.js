@@ -1,3 +1,4 @@
+import * as tf from '@tensorflow/tfjs';
 import * as tfvis from '@tensorflow/tfjs-vis';
 import { getData } from './data.js';
 
@@ -13,4 +14,11 @@ window.onload = () => {
             ]
         }
     );
+
+    const model = tf.sequential();
+    model.add(tf.layers.dense({
+        units: 1,
+        inputShape: [2],
+        activation: 'sigmoid'
+    }));
 };
