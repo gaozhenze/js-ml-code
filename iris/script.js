@@ -31,4 +31,15 @@ window.onload = async () => {
             { callbacks: ['onEpochEnd'] }
         )
     });
+
+    window.predict = (form) => {
+        const input = tf.tensor([[
+            form.a.value * 1,
+            form.b.value * 1,
+            form.c.value * 1,
+            form.d.value * 1,
+        ]]);
+        const pred = model.predict(input);
+        alert(`预测结果：${IRIS_CLASSES[pred.argMax(1).dataSync(0)]}`);
+    };
 };
