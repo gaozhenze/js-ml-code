@@ -1,10 +1,17 @@
+import * as tf from '@tensorflow/tfjs';
 import { getIrisData, IRIS_CLASSES } from './data';
 
 window.onload = () => {
     const [xTrain, yTrain, xTest, yTest] = getIrisData(0.15);
-    console.log(xTrain);
-    console.log(yTrain);
-    console.log(xTest);
-    console.log(yTest);
-    console.log(IRIS_CLASSES);
+    
+    const model = tf.sequential();
+    model.add(tf.layers.dense({
+        units: 10,
+        inputShape: [xTrain.shape[1]],
+        activation: 'sigmoid'
+    }));
+    model.add(tf.layers.dense({
+        units: 3,
+        activation: 'softmax'
+    }));
 };
