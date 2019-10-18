@@ -1,9 +1,9 @@
 import * as tf from '@tensorflow/tfjs';
 import * as tfvis from '@tensorflow/tfjs-vis';
-import { getData } from '../xor/data';
+import { getData } from './data';
 
 window.onload = async () => {
-    const data = getData(200, 3);
+    const data = getData(200, 2);
 
     tfvis.render.scatterplot(
         { name: '训练数据' },
@@ -17,9 +17,13 @@ window.onload = async () => {
 
     const model = tf.sequential();
     model.add(tf.layers.dense({
-        units: 1,
-        activation: 'sigmoid',
+        units: 10,
         inputShape: [2],
+        activation: "tanh"
+    }));
+    model.add(tf.layers.dense({
+        units: 1,
+        activation: 'sigmoid'
     }));
     model.compile({
         loss: tf.losses.logLoss,
@@ -37,5 +41,5 @@ window.onload = async () => {
             ['loss', 'val_loss'],
             { callbacks: ['onEpochEnd'] }
         )
-    })
+    });
 };
