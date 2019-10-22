@@ -52,4 +52,35 @@ window.onload = async () => {
         activation: 'softmax',
         kernelInitializer: 'varianceScaling'
     }));
+    model.compile({
+        loss: 'categoricalCrossentropy',
+        optimizer: tf.train.adam(),
+        metrics: ['accuracy']
+    });
+
+    const [trainXs, trainYs] = tf.tidy(() => {
+        const d = data.nextTrainBatch(1000);
+        return [
+            d.xs.reshape([1000, 28, 28, 1]),
+            d.labels
+        ];
+    });
+
+    const [testXs, testYs] = tf.tidy(() => {
+        const d = data.nextTestBatch(200);
+        return [
+            d.xs.reshape([200, 28, 28, 1]),
+            d.labels
+        ];
+    });
+
+    await model.fit(trainXs, trainYs, {
+        validationData: [testXs, testYs],
+        epochs: 50,
+        callbacks: tfvis.show.fitCallbacks(
+            { name: '训练效果' },
+            ['loss', 'val_loss', 'acc', 'val_acc'],
+            { callbacks: ['onEpochEnd'] }
+        )
+    });
 };
