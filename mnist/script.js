@@ -21,4 +21,35 @@ window.onload = async () => {
         await tf.browser.toPixels(imageTensor, canvas);
         surface.drawArea.appendChild(canvas);
     }
+
+    const model = tf.sequential();
+    model.add(tf.layers.conv2d({
+        inputShape: [28, 28, 1],
+        kernelSize: 5,
+        filters: 8,
+        strides: 1,
+        activation: 'relu',
+        kernelInitializer: 'varianceScaling'
+    }));
+    model.add(tf.layers.maxPool2d({
+        poolSize: [2, 2],
+        strides: [2, 2]
+    }));
+    model.add(tf.layers.conv2d({
+        kernelSize: 5,
+        filters: 16,
+        strides: 1,
+        activation: 'relu',
+        kernelInitializer: 'varianceScaling'
+    }));
+    model.add(tf.layers.maxPool2d({
+        poolSize: [2, 2],
+        strides: [2, 2]
+    }));
+    model.add(tf.layers.flatten());
+    model.add(tf.layers.dense({
+        units: 10,
+        activation: 'softmax',
+        kernelInitializer: 'varianceScaling'
+    }));
 };
