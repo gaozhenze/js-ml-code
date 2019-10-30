@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "@tensorflow-models/speech-commands": "^0.4.0",
     "@tensorflow/tfjs": "^1.2.9",
     "@tensorflow/tfjs-node": "^1.2.9",
     "@tensorflow/tfjs-vis": "^1.2.0"
@@ -14,5 +15,7 @@
   },
   "author": "",
   "license": "ISC",
-  "browserslist": ["last 1 Chrome version"]
+  "browserslist": [
+    "last 1 Chrome version"
+  ]
 }
