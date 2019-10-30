@@ -65,4 +65,8 @@ window.onload = async () => {
             alert(`预测结果：${BRAND_CLASSES[index]}`);
         }, 0);
     };
+
+    window.download = async () => {
+        await model.save('downloads://model');
+    };
 };
