@@ -51,3 +51,12 @@ window.toggle = async (checked) => {
         transferRecognizer.stopListening();
     }
 };
+
+window.save = () => {
+    const arrayBuffer = transferRecognizer.serializeExamples();
+    const blob = new Blob([arrayBuffer]);
+    const link = document.createElement('a');
+    link.href = window.URL.createObjectURL(blob);
+    link.download = 'data.bin';
+    link.click();
+};
